@@ -1,6 +1,7 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_app/constants/color_constant.dart';
+import 'package:to_do_app/widgets/task_box.dart';
 
 class TasksTap extends StatelessWidget {
   const TasksTap({super.key});
@@ -45,9 +46,24 @@ class TasksTap extends StatelessWidget {
                 dotColor: Color(0xFF333A47),
                 selectableDayPredicate: (date) => date.day != 23,
                 locale: 'en_ISO',
-              )
+              ),
             ],
           ),
+          SizedBox(
+            height: 50,
+          ),
+          Expanded(
+            child: ListView.separated(
+                itemBuilder: (context, index) {
+                  return TaskBox();
+                },
+                separatorBuilder: (context, index) {
+                  return SizedBox(
+                    height: 30,
+                  );
+                },
+                itemCount: 4),
+          )
         ],
       ),
     );
