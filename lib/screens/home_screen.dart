@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/constants/color_constant.dart';
+import 'package:to_do_app/taps/setting_tap.dart';
 import 'package:to_do_app/taps/tasks_tap.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,22 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: lightBackgroundColor,
-      appBar: AppBar(
-        title: Padding(
-          padding: EdgeInsets.only(left: 50, top: 40),
-          child: Text(
-            'To Do List',
-            style: TextStyle(
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w700,
-                fontSize: 22,
-                color: Colors.white),
-          ),
-        ),
-        backgroundColor: lightPrimaryColor,
-        toolbarHeight: 100,
-      ),
+      extendBody: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: SizedBox(
         width: 60,
@@ -90,9 +76,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: TasksTap(),
+      body: taps[currentIndex],
     );
   }
 
-  List<Widget> taps = [];
+  List<Widget> taps = [TasksTap(), SettingTap()];
 }
