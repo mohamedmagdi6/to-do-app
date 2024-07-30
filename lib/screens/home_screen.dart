@@ -42,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
           bottomRight: Radius.circular(30),
         ),
         child: BottomAppBar(
+          color: Colors.white,
           height: 86,
           shape: CircularNotchedRectangle(),
           notchMargin: 10,

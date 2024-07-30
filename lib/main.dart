@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/screens/edit_task_screen.dart';
 import 'package:to_do_app/screens/home_screen.dart';
 import 'package:to_do_app/screens/splash_screen.dart';
 
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       initialRoute: SplashScreen.routeName,
       routes: {
         HomeScreen.routeName: (context) => HomeScreen(),
+        EditTaskScreen.routeName: (context) => EditTaskScreen(),
       },
       home: SplashScreen(),
     );

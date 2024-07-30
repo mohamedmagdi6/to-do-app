@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:to_do_app/constants/color_constant.dart';
+import 'package:to_do_app/screens/edit_task_screen.dart';
 
 class TaskBox extends StatelessWidget {
   const TaskBox({
@@ -30,7 +31,9 @@ class TaskBox extends StatelessWidget {
         endActionPane:
             ActionPane(extentRatio: 0.25, motion: ScrollMotion(), children: [
           SlidableAction(
-            onPressed: (context) {},
+            onPressed: (context) {
+              Navigator.pushNamed(context, EditTaskScreen.routeName);
+            },
             padding: EdgeInsets.zero,
             icon: Icons.edit,
             label: 'Edit',
