@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class CustomTextField extends StatelessWidget {
-  CustomTextField({required this.hintText});
+  CustomTextField({required this.hintText, this.color});
   String hintText;
+  Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +16,9 @@ class CustomTextField extends StatelessWidget {
         )),
         hintText: hintText,
         hintStyle: TextStyle(
-          color: Color(0xFF383838),
-          fontSize: 18,
+          color: color == null ? Color(0xFF383838) : color,
+          fontSize: 20,
+          fontWeight: FontWeight.w400,
         ),
       ),
     );

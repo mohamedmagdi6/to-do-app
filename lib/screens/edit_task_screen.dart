@@ -12,16 +12,14 @@ class EditTaskScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: lightBackgroundColor,
       appBar: AppBar(
-        title: Padding(
-          padding: EdgeInsets.only(left: 40, top: 40),
-          child: Text(
-            'To Do List',
-            style: TextStyle(
-                fontFamily: 'Poppins-Medium',
-                fontWeight: FontWeight.w700,
-                fontSize: 22,
-                color: Colors.white),
-          ),
+        foregroundColor: Colors.white,
+        title: Text(
+          'To Do List',
+          style: TextStyle(
+              fontFamily: 'Poppins-Medium',
+              fontWeight: FontWeight.w700,
+              fontSize: 22,
+              color: Colors.white),
         ),
         backgroundColor: lightPrimaryColor,
         toolbarHeight: 100,

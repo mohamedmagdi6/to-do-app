@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:to_do_app/constants/color_constant.dart';
 import 'package:to_do_app/taps/setting_tap.dart';
 import 'package:to_do_app/taps/tasks_tap.dart';
+import 'package:to_do_app/widgets/add_task_bottom_sheet.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,7 +24,19 @@ class _HomeScreenState extends State<HomeScreen> {
         width: 60,
         height: 60,
         child: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            showModalBottomSheet(
+              isScrollControlled: true,
+              context: context,
+              builder: (context) {
+                return Padding(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom),
+                  child: AddTaskBootomSheet(),
+                );
+              },
+            );
+          },
           child: Icon(
             Icons.add,
             color: Colors.white,
