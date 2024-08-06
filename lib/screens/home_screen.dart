@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
               side: BorderSide(width: 4, color: Colors.white)),
-          backgroundColor: lightPrimaryColor,
+          backgroundColor: primaryColor,
         ),
       ),
       bottomNavigationBar: ClipRRect(
@@ -66,12 +66,12 @@ class _HomeScreenState extends State<HomeScreen> {
               setState(() {});
             },
             currentIndex: currentIndex,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            selectedItemColor: lightPrimaryColor,
-            unselectedItemColor: greyColor,
-            backgroundColor: Colors.transparent,
-            elevation: 0,
+            // showSelectedLabels: false,
+            // showUnselectedLabels: false,
+            // selectedItemColor: lightPrimaryColor,
+            // unselectedItemColor: greyColor,
+            // backgroundColor: Colors.transparent,
+            // elevation: 0,
             type: BottomNavigationBarType.fixed,
             items: [
               BottomNavigationBarItem(

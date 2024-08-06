@@ -21,14 +21,14 @@ class EditTaskScreen extends StatelessWidget {
               fontSize: 22,
               color: Colors.white),
         ),
-        backgroundColor: lightPrimaryColor,
+        backgroundColor: primaryColor,
         toolbarHeight: 100,
       ),
       body: Stack(
         children: [
           Container(
             height: 85,
-            color: lightPrimaryColor,
+            color: primaryColor,
           ),
           Padding(
               padding: const EdgeInsets.only(left: 33, right: 33, top: 30),
@@ -86,7 +86,7 @@ class EditTaskScreen extends StatelessWidget {
                       Spacer(),
                       customButton(
                         buttonName: 'Save Cahnges',
-                        color: lightPrimaryColor,
+                        color: primaryColor,
                         onPressed: () {},
                       ),
                       Spacer(),

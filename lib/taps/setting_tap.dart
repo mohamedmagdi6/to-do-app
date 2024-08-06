@@ -20,7 +20,7 @@ class SettingTap extends StatelessWidget {
                 color: Colors.white),
           ),
         ),
-        backgroundColor: lightPrimaryColor,
+        backgroundColor: primaryColor,
         toolbarHeight: 100,
       ),
       body: Column(
@@ -28,7 +28,7 @@ class SettingTap extends StatelessWidget {
         children: [
           Container(
             height: 85,
-            color: lightPrimaryColor,
+            color: primaryColor,
           ),
           SizedBox(
             height: 30,
@@ -61,11 +61,11 @@ class SettingTap extends StatelessWidget {
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
-                          color: lightPrimaryColor),
+                          color: primaryColor),
                     ),
                     Icon(
                       Icons.keyboard_arrow_down_outlined,
-                      color: lightPrimaryColor,
+                      color: primaryColor,
                       size: 20,
                     )
                   ],
@@ -75,7 +75,7 @@ class SettingTap extends StatelessWidget {
               decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border.all(
-                    color: lightPrimaryColor,
+                    color: primaryColor,
                     width: 1,
                   )),
             ),
@@ -111,11 +111,11 @@ class SettingTap extends StatelessWidget {
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
-                          color: lightPrimaryColor),
+                          color: primaryColor),
                     ),
                     Icon(
                       Icons.keyboard_arrow_down_outlined,
-                      color: lightPrimaryColor,
+                      color: primaryColor,
                       size: 20,
                     )
                   ],
@@ -125,7 +125,7 @@ class SettingTap extends StatelessWidget {
               decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border.all(
-                    color: lightPrimaryColor,
+                    color: primaryColor,
                     width: 1,
                   )),
             ),

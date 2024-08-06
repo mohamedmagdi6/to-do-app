@@ -56,7 +56,7 @@ class TaskBox extends StatelessWidget {
                   height: 62,
                   width: 4,
                   decoration: BoxDecoration(
-                    color: lightPrimaryColor,
+                    color: primaryColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
@@ -68,7 +68,7 @@ class TaskBox extends StatelessWidget {
                     Text(
                       'Play baxket ball',
                       style: TextStyle(
-                        color: lightPrimaryColor,
+                        color: primaryColor,
                         fontFamily: 'Poppins-Medium',
                         fontWeight: FontWeight.w700,
                         fontSize: 18,
@@ -105,7 +105,7 @@ class TaskBox extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: lightPrimaryColor,
+                    color: primaryColor,
                   ),
                 )
               ],

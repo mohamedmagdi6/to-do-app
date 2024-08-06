@@ -9,21 +9,13 @@ class TasksTap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: lightBackgroundColor,
       appBar: AppBar(
         title: Padding(
           padding: EdgeInsets.only(left: 40, top: 40),
           child: Text(
             'To Do List',
-            style: TextStyle(
-                fontFamily: 'Poppins-Medium',
-                fontWeight: FontWeight.w700,
-                fontSize: 22,
-                color: Colors.white),
           ),
         ),
-        backgroundColor: lightPrimaryColor,
-        toolbarHeight: 100,
       ),
       body: Column(
         children: [
@@ -31,7 +23,7 @@ class TasksTap extends StatelessWidget {
             children: [
               Container(
                 height: 85,
-                color: lightPrimaryColor,
+                color: primaryColor,
               ),
               CalendarTimeline(
                 initialDate: DateTime.now(),
@@ -41,7 +33,7 @@ class TasksTap extends StatelessWidget {
                 leftMargin: 20,
                 monthColor: greyColor,
                 dayColor: greyColor,
-                activeDayColor: lightPrimaryColor,
+                activeDayColor: primaryColor,
                 activeBackgroundDayColor: Colors.white,
                 dotColor: Color(0xFF333A47),
                 selectableDayPredicate: (date) => date.day != 23,
