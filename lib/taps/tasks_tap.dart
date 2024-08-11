@@ -1,10 +1,18 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_app/constants/color_constant.dart';
+import 'package:to_do_app/firebase_functions.dart';
 import 'package:to_do_app/widgets/task_box.dart';
 
-class TasksTap extends StatelessWidget {
-  const TasksTap({super.key});
+class TasksTap extends StatefulWidget {
+  TasksTap({super.key});
+
+  @override
+  State<TasksTap> createState() => _TasksTapState();
+}
+
+class _TasksTapState extends State<TasksTap> {
+  DateTime dateTime = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +34,13 @@ class TasksTap extends StatelessWidget {
                 color: primaryColor,
               ),
               CalendarTimeline(
-                initialDate: DateTime.now(),
+                initialDate: dateTime,
                 firstDate: DateTime.now().subtract(Duration(days: 365)),
                 lastDate: DateTime.now().add(Duration(days: 365)),
-                onDateSelected: (date) => print(date),
+                onDateSelected: (date) {
+                  dateTime = date;
+                  setState(() {});
+                },
                 leftMargin: 20,
                 monthColor: greyColor,
                 dayColor: greyColor,
@@ -44,17 +55,42 @@ class TasksTap extends StatelessWidget {
           SizedBox(
             height: 50,
           ),
-          Expanded(
-            child: ListView.separated(
-                itemBuilder: (context, index) {
-                  return TaskBox();
-                },
-                separatorBuilder: (context, index) {
-                  return SizedBox(
-                    height: 30,
-                  );
-                },
-                itemCount: 4),
+          StreamBuilder(
+            stream: FirebaseFunctions.getTask(dateTime),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator());
+              }
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text('something went wrong, please try again'),
+                );
+              }
+              var tasks = snapshot.data?.docs
+                      .map(
+                        (e) => e.data(),
+                      )
+                      .toList() ??
+                  [];
+
+              if (tasks.isEmpty) {
+                return Text('no tasks');
+              }
+              return Expanded(
+                child: ListView.separated(
+                    itemBuilder: (context, index) {
+                      return TaskBox(
+                        task: tasks[index],
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return SizedBox(
+                        height: 30,
+                      );
+                    },
+                    itemCount: tasks.length),
+              );
+            },
           )
         ],
       ),

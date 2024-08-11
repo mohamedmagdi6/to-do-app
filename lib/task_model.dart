@@ -1,11 +1,9 @@
-import 'dart:ffi';
-
 class TaskModel {
   String id;
   String title;
   String subTitle;
   bool isDone;
-  Int date;
+  int date;
   TaskModel(
       {this.id = '',
       required this.title,
@@ -16,7 +14,7 @@ class TaskModel {
   TaskModel.fromJson(Map<String, dynamic> json)
       : this(
           title: json['title'],
-          subTitle: json['subtitle'],
+          subTitle: json['subTitle'],
           date: json['date'],
           id: json['id'],
           isDone: json['isDone'],

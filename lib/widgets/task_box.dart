@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:to_do_app/constants/color_constant.dart';
+import 'package:to_do_app/firebase_functions.dart';
 import 'package:to_do_app/screens/edit_task_screen.dart';
+import 'package:to_do_app/task_model.dart';
 
 class TaskBox extends StatelessWidget {
   const TaskBox({
     super.key,
+    required this.task,
   });
+  final TaskModel task;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +22,9 @@ class TaskBox extends StatelessWidget {
           motion: ScrollMotion(),
           children: [
             SlidableAction(
-              onPressed: (context) {},
+              onPressed: (context) {
+                FirebaseFunctions.delete(task.id);
+              },
               padding: EdgeInsets.zero,
               icon: Icons.delete,
               spacing: 5,
@@ -66,7 +72,7 @@ class TaskBox extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Play baxket ball',
+                      task.title,
                       style: TextStyle(
                         color: primaryColor,
                         fontFamily: 'Poppins-Medium',
