@@ -31,9 +31,20 @@ class FirebaseFunctions {
         .snapshots();
   }
 
-  static delete(String task) {
+  static Future<void> delete(String task) {
     var collection = getCollection();
 
     return collection.doc(task).delete();
+  }
+
+  static Future<void> isDone(TaskModel task) {
+    var collection = getCollection();
+    return collection.doc(task.id).update({'isDone': task.isDone});
+  }
+
+  static Future<void> edit(TaskModel task) {
+    var collection = getCollection();
+    return collection.doc(task.id).update(
+        {'title': task.title, 'subTitle': task.subTitle, 'date': task.date});
   }
 }

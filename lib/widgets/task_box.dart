@@ -5,13 +5,18 @@ import 'package:to_do_app/firebase_functions.dart';
 import 'package:to_do_app/screens/edit_task_screen.dart';
 import 'package:to_do_app/task_model.dart';
 
-class TaskBox extends StatelessWidget {
-  const TaskBox({
+class TaskBox extends StatefulWidget {
+  TaskBox({
     super.key,
     required this.task,
   });
-  final TaskModel task;
+  TaskModel task;
 
+  @override
+  State<TaskBox> createState() => _TaskBoxState();
+}
+
+class _TaskBoxState extends State<TaskBox> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,7 +28,7 @@ class TaskBox extends StatelessWidget {
           children: [
             SlidableAction(
               onPressed: (context) {
-                FirebaseFunctions.delete(task.id);
+                FirebaseFunctions.delete(widget.task.id);
               },
               padding: EdgeInsets.zero,
               icon: Icons.delete,
@@ -38,7 +43,8 @@ class TaskBox extends StatelessWidget {
             ActionPane(extentRatio: 0.25, motion: ScrollMotion(), children: [
           SlidableAction(
             onPressed: (context) {
-              Navigator.pushNamed(context, EditTaskScreen.routeName);
+              Navigator.pushNamed(context, EditTaskScreen.routeName,
+                  arguments: widget.task);
             },
             padding: EdgeInsets.zero,
             icon: Icons.edit,
@@ -62,7 +68,9 @@ class TaskBox extends StatelessWidget {
                   height: 62,
                   width: 4,
                   decoration: BoxDecoration(
-                    color: primaryColor,
+                    color: widget.task.isDone == true
+                        ? Color(0xFF61E757)
+                        : primaryColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
@@ -72,47 +80,51 @@ class TaskBox extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      task.title,
+                      widget.task.title,
                       style: TextStyle(
-                        color: primaryColor,
+                        color: widget.task.isDone == true
+                            ? Color(0xFF61E757)
+                            : primaryColor,
                         fontFamily: 'Poppins-Medium',
                         fontWeight: FontWeight.w700,
                         fontSize: 18,
                       ),
                     ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: ImageIcon(
-                            AssetImage(
-                              'assets/images/Discovery.png',
-                            ),
-                            size: 20,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text('10:30 AM'),
-                      ],
-                    )
+                    SizedBox(width: 200, child: Text(widget.task.subTitle))
                   ],
                 ),
                 Spacer(
                   flex: 2,
                 ),
-                Container(
-                  width: 69,
-                  height: 34,
-                  child: ImageIcon(
-                    AssetImage('assets/images/Icon awesome-check.png'),
-                    color: Colors.white,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: primaryColor,
-                  ),
+                InkWell(
+                  onTap: () {
+                    widget.task.isDone = true;
+                    print(widget.task.isDone);
+
+                    FirebaseFunctions.isDone(widget.task);
+                    setState(() {});
+                  },
+                  child: widget.task.isDone == true
+                      ? Text(
+                          'Done!',
+                          style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w700,
+                              fontSize: 22,
+                              color: Color(0xFF61E757)),
+                        )
+                      : Container(
+                          width: 69,
+                          height: 34,
+                          child: ImageIcon(
+                            AssetImage('assets/images/Icon awesome-check.png'),
+                            color: Colors.white,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: primaryColor,
+                          ),
+                        ),
                 )
               ],
             ),
