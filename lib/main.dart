@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:to_do_app/firebase_options.dart';
 import 'package:to_do_app/screens/edit_task_screen.dart';
 import 'package:to_do_app/screens/home_screen.dart';
+import 'package:to_do_app/screens/login_screen.dart';
+import 'package:to_do_app/screens/sign_up_screen.dart';
 import 'package:to_do_app/screens/splash_screen.dart';
 import 'package:to_do_app/theme_data.dart';
 
@@ -28,6 +30,8 @@ class MyApp extends StatelessWidget {
       routes: {
         HomeScreen.routeName: (context) => HomeScreen(),
         EditTaskScreen.routeName: (context) => EditTaskScreen(),
+        LoginScreen.rounteName: (context) => LoginScreen(),
+        SignUpScreen.routeName: (context) => SignUpScreen(),
       },
       home: SplashScreen(),
     );
