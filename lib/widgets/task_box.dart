@@ -3,7 +3,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:to_do_app/constants/color_constant.dart';
 import 'package:to_do_app/firebase_functions.dart';
 import 'package:to_do_app/screens/edit_task_screen.dart';
-import 'package:to_do_app/task_model.dart';
+import 'package:to_do_app/models/task_model.dart';
 
 class TaskBox extends StatefulWidget {
   TaskBox({

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/constants/color_constant.dart';
 import 'package:to_do_app/firebase_functions.dart';
-import 'package:to_do_app/task_model.dart';
+import 'package:to_do_app/models/task_model.dart';
 import 'package:to_do_app/widgets/custom_button.dart';
 import 'package:to_do_app/widgets/custom_text_field.dart';
 

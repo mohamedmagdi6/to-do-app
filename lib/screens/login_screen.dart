@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/constants/color_constant.dart';
+import 'package:to_do_app/firebase_functions.dart';
+import 'package:to_do_app/screens/home_screen.dart';
 import 'package:to_do_app/screens/sign_up_screen.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
   static const rounteName = 'liginScreen';
+  TextEditingController emailController = TextEditingController();
+
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,18 +49,20 @@ class LoginScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        TextField(
+        TextFormField(
+          controller: emailController,
           decoration: InputDecoration(
-              hintText: "Username",
+              hintText: "emailAdress",
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(18),
                   borderSide: BorderSide.none),
               fillColor: primaryColor.withOpacity(0.1),
               filled: true,
-              prefixIcon: const Icon(Icons.person)),
+              prefixIcon: const Icon(Icons.alternate_email)),
         ),
         const SizedBox(height: 10),
-        TextField(
+        TextFormField(
+          controller: passwordController,
           decoration: InputDecoration(
             hintText: "Password",
             border: OutlineInputBorder(
@@ -69,7 +76,38 @@ class LoginScreen extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            FirebaseFunctions.login(
+                emailController.text, passwordController.text, onSucsses: () {
+              Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+            }, onError: (e) {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  backgroundColor: lightBackgroundColor.withOpacity(0.9),
+                  title: Text('error'),
+                  content: Text(e.toString()),
+                  actions: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        'okay',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStatePropertyAll(
+                            primaryColor.withOpacity(0.8)),
+                      ),
+                    )
+                  ],
+                ),
+              );
+            });
+          },
           style: ElevatedButton.styleFrom(
             shape: const StadiumBorder(),
             padding: const EdgeInsets.symmetric(vertical: 16),

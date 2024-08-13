@@ -1,7 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_app/constants/color_constant.dart';
 import 'package:to_do_app/firebase_functions.dart';
-import 'package:to_do_app/task_model.dart';
+import 'package:to_do_app/models/task_model.dart';
 import 'package:to_do_app/widgets/custom_button.dart';
 import 'package:to_do_app/widgets/custom_text_field.dart';
 
@@ -121,7 +122,8 @@ class _AddTaskBootomSheetState extends State<AddTaskBootomSheet> {
                       date: DateUtils.dateOnly(selectionDate)
                           .millisecondsSinceEpoch,
                       title: titleController.text,
-                      subTitle: subTitleController.text);
+                      subTitle: subTitleController.text,
+                      userId: FirebaseAuth.instance.currentUser!.uid);
                   FirebaseFunctions.addTask(task).then(
                     (value) {
                       Navigator.pop(context);
