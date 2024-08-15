@@ -1,76 +1,116 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:to_do_app/constants/color_constant.dart';
 import 'package:to_do_app/firebase_functions.dart';
+import 'package:to_do_app/providers/theme_mode_provider.dart';
 import 'package:to_do_app/screens/home_screen.dart';
 import 'package:to_do_app/screens/sign_up_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
-  static const rounteName = 'liginScreen';
+  static const routeName = 'liginScreen';
   TextEditingController emailController = TextEditingController();
-
   TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: lightBackgroundColor,
-        body: Container(
-          margin: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _header(context),
-              _inputField(context),
-              _forgotPassword(context),
-              _signup(context),
-            ],
-          ),
+    return Scaffold(
+      body: Container(
+        margin: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            _header(context),
+            _inputField(context),
+            _forgotPassword(context),
+            _signup(context),
+          ],
         ),
       ),
     );
   }
 
   _header(context) {
-    return const Column(
+    var provMode = Provider.of<ThemeModeProvider>(context);
+
+    return Column(
       children: [
         Text(
           "Welcome Back",
-          style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 40,
+            fontWeight: FontWeight.bold,
+            color: provMode.currentMode == ThemeMode.light
+                ? darkBalckColor
+                : Colors.white,
+          ),
         ),
-        Text("Enter your credential to login"),
+        Text(
+          "Enter your credential to login",
+          style: TextStyle(
+            fontSize: 15,
+            color: provMode.currentMode == ThemeMode.light
+                ? Colors.grey[700]
+                : Colors.white54,
+          ),
+        ),
       ],
     );
   }
 
   _inputField(context) {
+    var provMode = Provider.of<ThemeModeProvider>(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TextFormField(
           controller: emailController,
           decoration: InputDecoration(
-              hintText: "emailAdress",
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(18),
-                  borderSide: BorderSide.none),
-              fillColor: primaryColor.withOpacity(0.1),
-              filled: true,
-              prefixIcon: const Icon(Icons.alternate_email)),
+            hintStyle: TextStyle(
+              color: provMode.currentMode == ThemeMode.light
+                  ? darkBalckColor
+                  : Colors.white,
+            ),
+            hintText: "emailAdress",
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(18),
+                borderSide: BorderSide.none),
+            fillColor: provMode.currentMode == ThemeMode.light
+                ? primaryColor.withOpacity(0.1)
+                : primaryColor.withOpacity(0.3),
+            filled: true,
+            prefixIcon: Icon(
+              Icons.alternate_email,
+              color: provMode.currentMode == ThemeMode.light
+                  ? darkBalckColor
+                  : Colors.white,
+            ),
+          ),
         ),
         const SizedBox(height: 10),
         TextFormField(
           controller: passwordController,
           decoration: InputDecoration(
+            hintStyle: TextStyle(
+              color: provMode.currentMode == ThemeMode.light
+                  ? darkBalckColor
+                  : Colors.white,
+            ),
             hintText: "Password",
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(18),
                 borderSide: BorderSide.none),
-            fillColor: primaryColor.withOpacity(0.1),
+            fillColor: provMode.currentMode == ThemeMode.light
+                ? primaryColor.withOpacity(0.1)
+                : primaryColor.withOpacity(0.3),
             filled: true,
-            prefixIcon: const Icon(Icons.password),
+            prefixIcon: Icon(
+              Icons.password,
+              color: provMode.currentMode == ThemeMode.light
+                  ? darkBalckColor
+                  : Colors.white,
+            ),
           ),
           obscureText: true,
         ),
@@ -84,7 +124,9 @@ class LoginScreen extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
-                  backgroundColor: lightBackgroundColor.withOpacity(0.9),
+                  backgroundColor: provMode.currentMode == ThemeMode.light
+                      ? lightBackgroundColor.withOpacity(0.9)
+                      : primaryColor.withOpacity(0.9),
                   title: Text('error'),
                   content: Text(e.toString()),
                   actions: [
@@ -100,7 +142,9 @@ class LoginScreen extends StatelessWidget {
                       ),
                       style: ButtonStyle(
                         backgroundColor: WidgetStatePropertyAll(
-                            primaryColor.withOpacity(0.8)),
+                            provMode.currentMode == ThemeMode.light
+                                ? primaryColor.withOpacity(0.8)
+                                : darkBackgrounColor.withOpacity(0.8)),
                       ),
                     )
                   ],
@@ -133,10 +177,18 @@ class LoginScreen extends StatelessWidget {
   }
 
   _signup(context) {
+    var provMode = Provider.of<ThemeModeProvider>(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text("Dont have an account? "),
+        Text(
+          "Dont have an account? ",
+          style: TextStyle(
+            color: provMode.currentMode == ThemeMode.light
+                ? darkBalckColor
+                : Colors.white,
+          ),
+        ),
         TextButton(
             onPressed: () {
               Navigator.pushNamed(context, SignUpScreen.routeName);

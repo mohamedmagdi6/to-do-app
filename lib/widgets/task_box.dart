@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:provider/provider.dart';
 import 'package:to_do_app/constants/color_constant.dart';
 import 'package:to_do_app/firebase_functions.dart';
+import 'package:to_do_app/providers/theme_mode_provider.dart';
 import 'package:to_do_app/screens/edit_task_screen.dart';
 import 'package:to_do_app/models/task_model.dart';
 
@@ -19,6 +21,7 @@ class TaskBox extends StatefulWidget {
 class _TaskBoxState extends State<TaskBox> {
   @override
   Widget build(BuildContext context) {
+    var provMode = Provider.of<ThemeModeProvider>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 33),
       child: Slidable(
@@ -55,7 +58,9 @@ class _TaskBoxState extends State<TaskBox> {
         ]),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: provMode.currentMode == ThemeMode.light
+                ? Colors.white
+                : darkBalckColor,
             borderRadius: BorderRadius.circular(15),
           ),
           height: 115,
@@ -90,7 +95,16 @@ class _TaskBoxState extends State<TaskBox> {
                         fontSize: 18,
                       ),
                     ),
-                    SizedBox(width: 200, child: Text(widget.task.subTitle))
+                    SizedBox(
+                        width: 200,
+                        child: Text(
+                          widget.task.subTitle,
+                          style: TextStyle(
+                            color: provMode.currentMode == ThemeMode.light
+                                ? darkBalckColor
+                                : Colors.white,
+                          ),
+                        ))
                   ],
                 ),
                 Spacer(

@@ -1,7 +1,9 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:to_do_app/constants/color_constant.dart';
 import 'package:to_do_app/firebase_functions.dart';
+import 'package:to_do_app/providers/theme_mode_provider.dart';
 import 'package:to_do_app/widgets/task_box.dart';
 
 class TasksTap extends StatefulWidget {
@@ -16,6 +18,7 @@ class _TasksTapState extends State<TasksTap> {
 
   @override
   Widget build(BuildContext context) {
+    var provMode = Provider.of<ThemeModeProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Padding(
@@ -24,6 +27,7 @@ class _TasksTapState extends State<TasksTap> {
             'To Do List',
           ),
         ),
+        toolbarHeight: 100,
       ),
       body: Column(
         children: [
@@ -45,7 +49,10 @@ class _TasksTapState extends State<TasksTap> {
                 monthColor: greyColor,
                 dayColor: greyColor,
                 activeDayColor: primaryColor,
-                activeBackgroundDayColor: Colors.white,
+                activeBackgroundDayColor:
+                    provMode.currentMode == ThemeMode.light
+                        ? Colors.white
+                        : darkBalckColor,
                 dotColor: Color(0xFF333A47),
                 selectableDayPredicate: (date) => date.day != 23,
                 locale: 'en_ISO',

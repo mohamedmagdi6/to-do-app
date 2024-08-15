@@ -41,9 +41,6 @@ class _HomeScreenState extends State<HomeScreen> {
             Icons.add,
             color: Colors.white,
           ),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
-              side: BorderSide(width: 4, color: Colors.white)),
           backgroundColor: primaryColor,
         ),
       ),
@@ -55,7 +52,6 @@ class _HomeScreenState extends State<HomeScreen> {
           bottomRight: Radius.circular(30),
         ),
         child: BottomAppBar(
-          color: Colors.white,
           height: 86,
           shape: CircularNotchedRectangle(),
           notchMargin: 10,
@@ -66,12 +62,6 @@ class _HomeScreenState extends State<HomeScreen> {
               setState(() {});
             },
             currentIndex: currentIndex,
-            // showSelectedLabels: false,
-            // showUnselectedLabels: false,
-            // selectedItemColor: lightPrimaryColor,
-            // unselectedItemColor: greyColor,
-            // backgroundColor: Colors.transparent,
-            // elevation: 0,
             type: BottomNavigationBarType.fixed,
             items: [
               BottomNavigationBarItem(

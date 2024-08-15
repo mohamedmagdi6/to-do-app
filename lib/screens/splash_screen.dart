@@ -13,7 +13,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, LoginScreen.rounteName);
+      Navigator.pushReplacementNamed(context, LoginScreen.routeName);
     });
   }
 

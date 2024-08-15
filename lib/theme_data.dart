@@ -3,6 +3,14 @@ import 'package:to_do_app/constants/color_constant.dart';
 
 class MyThemData {
   static ThemeData lightTheme = ThemeData(
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+          side: BorderSide(width: 4, color: Colors.white)),
+    ),
+    bottomAppBarTheme: BottomAppBarTheme(
+      color: Colors.white,
+    ),
     appBarTheme: const AppBarTheme(
         backgroundColor: primaryColor,
         toolbarHeight: 100,
@@ -26,13 +34,21 @@ class MyThemData {
 
   // light mode.
   static ThemeData darkTheme = ThemeData(
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+          side: BorderSide(width: 4, color: darkBalckColor)),
+    ),
+    bottomAppBarTheme: BottomAppBarTheme(
+      color: darkBalckColor,
+    ),
     appBarTheme: const AppBarTheme(
         backgroundColor: primaryColor,
         titleTextStyle: TextStyle(
             fontFamily: 'Poppins-Medium',
             fontWeight: FontWeight.w700,
             fontSize: 22,
-            color: Colors.white)),
+            color: darkBalckColor)),
     scaffoldBackgroundColor: darkBackgrounColor,
     fontFamily: 'Poppins-Medium',
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
