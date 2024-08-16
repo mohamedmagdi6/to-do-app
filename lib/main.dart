@@ -16,7 +16,8 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(ChangeNotifierProvider(
-      create: (context) => ThemeModeProvider(), child: const MyApp()));
+      create: (context) => ThemeModeProvider()..getBoolValuesSF(),
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
