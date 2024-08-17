@@ -1,8 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:to_do_app/constants/color_constant.dart';
 import 'package:to_do_app/firebase_functions.dart';
 import 'package:to_do_app/models/task_model.dart';
+import 'package:to_do_app/providers/theme_mode_provider.dart';
 import 'package:to_do_app/widgets/custom_button.dart';
 import 'package:to_do_app/widgets/custom_text_field.dart';
 
@@ -21,6 +24,7 @@ class _AddTaskBootomSheetState extends State<AddTaskBootomSheet> {
   DateTime selectionDate = DateTime.now();
   @override
   Widget build(BuildContext context) {
+    var provMode = Provider.of<ThemeModeProvider>(context);
     return Padding(
       padding: const EdgeInsets.only(top: 32, left: 44, right: 44),
       child: Form(
@@ -30,9 +34,12 @@ class _AddTaskBootomSheetState extends State<AddTaskBootomSheet> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Add new Task',
+              "addNewTask".tr(),
               textAlign: TextAlign.center,
               style: TextStyle(
+                color: provMode.currentMode == ThemeMode.light
+                    ? darkBalckColor
+                    : primaryColor,
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w700,
                 fontSize: 18,
@@ -45,12 +52,14 @@ class _AddTaskBootomSheetState extends State<AddTaskBootomSheet> {
               controller: titleController,
               validator: (value) {
                 if (value!.isEmpty) {
-                  return 'Please enter some text';
+                  return "addTitleValidate".tr();
                 }
                 return null;
               },
-              hintText: 'enter your task',
-              color: Color(0xFFA9A9A9),
+              hintText: "hintNewTask".tr(),
+              color: provMode.currentMode == ThemeMode.light
+                  ? Color(0xFFA9A9A9)
+                  : primaryColor,
             ),
             SizedBox(
               height: 20,
@@ -59,19 +68,24 @@ class _AddTaskBootomSheetState extends State<AddTaskBootomSheet> {
               controller: subTitleController,
               validator: (value) {
                 if (value!.isEmpty) {
-                  return 'Please enter some text';
+                  return "addDiscValidate".tr();
                 }
                 return null;
               },
-              hintText: 'Description',
-              color: Color(0xFFA9A9A9),
+              hintText: "hintDescription".tr(),
+              color: provMode.currentMode == ThemeMode.light
+                  ? Color(0xFFA9A9A9)
+                  : primaryColor,
             ),
             SizedBox(
               height: 20,
             ),
             Text(
-              'Select time',
+              "editSelsctedTime".tr(),
               style: TextStyle(
+                color: provMode.currentMode == ThemeMode.light
+                    ? Color(0xFFA9A9A9)
+                    : primaryColor,
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w400,
                 fontSize: 20,
@@ -104,17 +118,20 @@ class _AddTaskBootomSheetState extends State<AddTaskBootomSheet> {
                 selectionDate.toString().substring(0, 10),
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w400,
-                    fontSize: 20,
-                    color: Color(0xFFA9A9A9)),
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w400,
+                  fontSize: 20,
+                  color: provMode.currentMode == ThemeMode.light
+                      ? Color(0xFFA9A9A9)
+                      : primaryColor,
+                ),
               ),
             ),
             SizedBox(
               height: 30,
             ),
             customButton(
-              buttonName: 'Add TAsk',
+              buttonName: "addTask".tr(),
               color: primaryColor,
               onPressed: () {
                 if (formKey.currentState!.validate()) {

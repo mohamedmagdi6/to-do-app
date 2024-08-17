@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:to_do_app/constants/color_constant.dart';
+import 'package:to_do_app/providers/theme_mode_provider.dart';
 import 'package:to_do_app/taps/setting_tap.dart';
 import 'package:to_do_app/taps/tasks_tap.dart';
 import 'package:to_do_app/widgets/add_task_bottom_sheet.dart';
@@ -17,6 +19,8 @@ int currentIndex = 0;
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    var provMode = Provider.of<ThemeModeProvider>(context);
+
     return Scaffold(
       extendBody: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -26,6 +30,9 @@ class _HomeScreenState extends State<HomeScreen> {
         child: FloatingActionButton(
           onPressed: () {
             showModalBottomSheet(
+              backgroundColor: provMode.currentMode == ThemeMode.light
+                  ? Colors.white
+                  : darkBalckColor,
               isScrollControlled: true,
               context: context,
               builder: (context) {

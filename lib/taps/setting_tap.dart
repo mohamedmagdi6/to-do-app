@@ -7,9 +7,10 @@ import 'package:to_do_app/providers/theme_mode_provider.dart';
 class SettingTap extends StatelessWidget {
   SettingTap({super.key});
 
-  var sellectedMode = "light".tr();
-
-  var sellectedlang = "english".tr();
+  List<String> languages = ["english", "arabic"];
+  String? choosenValue;
+  List<String> themes = ["light", "dark"];
+  String? choosenMode;
 
   @override
   Widget build(BuildContext context) {
@@ -66,21 +67,37 @@ class SettingTap extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 56),
             child: Container(
-              child: DropdownButton(
-                items: [
-                  DropdownMenuItem(
-                    value: "english".tr(),
-                    child: Text("english".tr()),
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              decoration: BoxDecoration(
+                  color: provMode.currentMode == ThemeMode.light
+                      ? Colors.white
+                      : darkBalckColor,
+                  border: Border.all(
+                    color: primaryColor,
+                    width: 1,
+                  )),
+              child: DropdownButtonFormField(
+                items: languages.map((valueItem) {
+                  return DropdownMenuItem(
+                    value: valueItem,
+                    child: Text(
+                      valueItem.tr(),
+                    ),
+                  );
+                }).toList(),
+                hint: Text(
+                  "selectLang".tr(),
+                  style: TextStyle(
+                    color: provMode.currentMode == ThemeMode.light
+                        ? Color(0xFFA9A9A9)
+                        : primaryColor,
                   ),
-                  DropdownMenuItem(
-                    value: "arabic".tr(),
-                    child: Text("arabic".tr()),
-                  )
-                ],
-                value: sellectedlang,
+                ),
+                value: choosenValue,
                 onChanged: (va) {
-                  sellectedlang = va!;
-                  if (sellectedlang == "english".tr()) {
+                  choosenValue = va!;
+                  if (choosenValue == languages[0]) {
                     context.setLocale(Locale('en'));
                   } else {
                     context.setLocale(Locale('ar'));
@@ -101,16 +118,6 @@ class SettingTap extends StatelessWidget {
                     fontSize: 14,
                     color: primaryColor),
               ),
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                  color: provMode.currentMode == ThemeMode.light
-                      ? Colors.white
-                      : darkBalckColor,
-                  border: Border.all(
-                    color: primaryColor,
-                    width: 1,
-                  )),
             ),
           ),
           SizedBox(
@@ -135,21 +142,23 @@ class SettingTap extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 56),
             child: Container(
-              child: DropdownButton(
-                items: [
-                  DropdownMenuItem(
-                    value: "light".tr(),
-                    child: Text("light".tr()),
+              child: DropdownButtonFormField(
+                items: themes.map((themesKey) {
+                  return DropdownMenuItem(
+                      value: themesKey, child: Text(themesKey.tr()));
+                }).toList(),
+                hint: Text(
+                  "selectMode".tr(),
+                  style: TextStyle(
+                    color: provMode.currentMode == ThemeMode.light
+                        ? Color(0xFFA9A9A9)
+                        : primaryColor,
                   ),
-                  DropdownMenuItem(
-                    value: "dark".tr(),
-                    child: Text("dark".tr()),
-                  )
-                ],
-                value: sellectedMode,
+                ),
+                value: choosenMode,
                 onChanged: (va) {
-                  sellectedMode = va!;
-                  if (sellectedMode == "light".tr()) {
+                  choosenMode = va!;
+                  if (choosenMode == themes[0]) {
                     provMode.changeTheme(ThemeMode.light);
                   } else {
                     provMode.changeTheme(ThemeMode.dark);

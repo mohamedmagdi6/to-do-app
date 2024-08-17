@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
       theme: MyThemData.lightTheme,
       darkTheme: MyThemData.darkTheme,
       debugShowCheckedModeBanner: false,
-      initialRoute: HomeScreen.routeName,
+      initialRoute: SplashScreen.routeName,
       routes: {
         HomeScreen.routeName: (context) => HomeScreen(),
         EditTaskScreen.routeName: (context) => EditTaskScreen(),

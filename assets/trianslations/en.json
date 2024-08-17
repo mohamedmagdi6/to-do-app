@@ -30,6 +30,8 @@
     "mode" : "Mode",
     "light" : "Light",
     "dark" : "Dark",
+    "selectLang": "Select Language",
+    "selectMode": "Select Mode",
     "delete" : "Delete",
     "Edit" : "Edit",
     "done" : "Done!",
@@ -38,6 +40,11 @@
     "editTitleTextField" : "edit title",
     "editDiscriptionTextField" : "Edit discription",
     "editSelsctedTime" : "Select Time",
-    "saveChangesButton" : "Save Cahnges"
+    "addNewTask" : "Add new Task",
+    "hintNewTask" : "Your New Task",
+    "hintDescription" : "Description",
+    "addTitleValidate" : "Please Write Your Title of Task",
+    "addDiscValidate" : "Please Write the discription"
+
 
 }

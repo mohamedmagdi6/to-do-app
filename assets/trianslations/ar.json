@@ -30,6 +30,8 @@
     "mode" : "المظهر",
     "light" : "نهارى",
     "dark" : "ليلى",
+    "selectLang": "حدد لغة",
+    "selectMode": "حدد وضع",
     "delete" : "حذف",
     "Edit" : "تعديل",
     "done" : "!تم",
@@ -38,6 +40,11 @@
     "editTitleTextField" : "عدل العنوان",
     "editDiscriptionTextField" : "عدل الوصف",
     "editSelsctedTime" : "حدد وقت",
-    "saveChangesButton" : "حفظ التغييرات"
-
+    "saveChangesButton" : "حفظ التغييرات",
+    "addNewTask" : "اضافة مهمة جديدة",
+    "hintNewTask" : "مهمتك الجديد",
+    "hintDescription" : "الوصف",
+    "addTask" : "اضافة مهمة",
+    "addTitleValidate" : "من فضلك اكتب عنوان مهمتك",
+    "addDiscValidate" : "Pمن فضلك اكتب الوصف"
 }
