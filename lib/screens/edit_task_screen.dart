@@ -1,7 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:to_do_app/constants/color_constant.dart';
 import 'package:to_do_app/firebase_functions.dart';
 import 'package:to_do_app/models/task_model.dart';
+import 'package:to_do_app/providers/theme_mode_provider.dart';
 import 'package:to_do_app/widgets/custom_button.dart';
 import 'package:to_do_app/widgets/custom_text_field.dart';
 
@@ -23,17 +26,22 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
   @override
   Widget build(BuildContext context) {
     var task = ModalRoute.of(context)!.settings.arguments as TaskModel;
+    var provMode = Provider.of<ThemeModeProvider>(context);
     return Scaffold(
-      backgroundColor: lightBackgroundColor,
       appBar: AppBar(
-        foregroundColor: Colors.white,
+        foregroundColor: provMode.currentMode == ThemeMode.light
+            ? Colors.white
+            : darkBalckColor,
         title: Text(
-          'To Do List',
+          "title".tr(),
           style: TextStyle(
-              fontFamily: 'Poppins-Medium',
-              fontWeight: FontWeight.w700,
-              fontSize: 22,
-              color: Colors.white),
+            fontFamily: 'Poppins-Medium',
+            fontWeight: FontWeight.w700,
+            fontSize: 22,
+            color: provMode.currentMode == ThemeMode.light
+                ? Colors.white
+                : darkBalckColor,
+          ),
         ),
         backgroundColor: primaryColor,
         toolbarHeight: 100,
@@ -50,7 +58,9 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                 child: Container(
                   height: MediaQuery.of(context).size.height * 0.7,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: provMode.currentMode == ThemeMode.light
+                        ? Colors.white
+                        : darkBalckColor.withOpacity(0.8),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Padding(
@@ -59,36 +69,48 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          'Edit Task',
+                          "editTitle".tr(),
                           style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w700,
-                              fontSize: 18,
-                              color: Color(0xFF383838)),
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18,
+                            color: provMode.currentMode == ThemeMode.light
+                                ? Color(0xFF383838)
+                                : primaryColor,
+                          ),
                           textAlign: TextAlign.center,
                         ),
                         SizedBox(
                           height: 30,
                         ),
                         CustomTextField(
+                            color: provMode.currentMode == ThemeMode.light
+                                ? Color(0xFF383838)
+                                : primaryColor,
                             controller: titleController,
-                            hintText: 'This is title'),
+                            hintText: "editTitleTextField".tr()),
                         SizedBox(
                           height: 30,
                         ),
                         CustomTextField(
+                            color: provMode.currentMode == ThemeMode.light
+                                ? Color(0xFF383838)
+                                : primaryColor,
                             controller: subtitleController,
-                            hintText: 'Task details'),
+                            hintText: "editDiscriptionTextField".tr()),
                         SizedBox(
                           height: 30,
                         ),
                         Text(
-                          'Select time',
+                          "editSelsctedTime".tr(),
                           style: TextStyle(
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w400,
-                              fontSize: 20,
-                              color: Color(0xFF383838)),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 20,
+                            color: provMode.currentMode == ThemeMode.light
+                                ? Color(0xFF383838)
+                                : primaryColor,
+                          ),
                         ),
                         SizedBox(
                           height: 30,
@@ -120,15 +142,18 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                             selectionDate.toString().substring(0, 10),
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w400,
-                                fontSize: 20,
-                                color: Color(0xFFA9A9A9)),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              fontSize: 20,
+                              color: provMode.currentMode == ThemeMode.light
+                                  ? Color(0xFFA9A9A9)
+                                  : primaryColor,
+                            ),
                           ),
                         ),
                         Spacer(),
                         customButton(
-                          buttonName: 'Save Cahnges',
+                          buttonName: "saveChangesButton".tr(),
                           color: primaryColor,
                           onPressed: () {
                             if (titleController.text == "") {

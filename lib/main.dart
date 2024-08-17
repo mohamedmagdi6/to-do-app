@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,9 +16,14 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await EasyLocalization.ensureInitialized();
   runApp(ChangeNotifierProvider(
       create: (context) => ThemeModeProvider()..getBoolValuesSF(),
-      child: const MyApp()));
+      child: EasyLocalization(
+          path: 'assets/trianslations',
+          supportedLocales: [Locale('en'), Locale('ar')],
+          fallbackLocale: Locale('en'),
+          child: const MyApp())));
 }
 
 class MyApp extends StatelessWidget {
@@ -27,11 +33,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     var providerMode = Provider.of<ThemeModeProvider>(context);
     return MaterialApp(
+      supportedLocales: context.supportedLocales,
+      localizationsDelegates: context.localizationDelegates,
+      locale: context.locale,
       themeMode: providerMode.currentMode,
       theme: MyThemData.lightTheme,
       darkTheme: MyThemData.darkTheme,
       debugShowCheckedModeBanner: false,
-      initialRoute: SplashScreen.routeName,
+      initialRoute: HomeScreen.routeName,
       routes: {
         HomeScreen.routeName: (context) => HomeScreen(),
         EditTaskScreen.routeName: (context) => EditTaskScreen(),

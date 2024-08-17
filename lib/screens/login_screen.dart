@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/constants/color_constant.dart';
@@ -36,7 +37,7 @@ class LoginScreen extends StatelessWidget {
     return Column(
       children: [
         Text(
-          "Welcome Back",
+          "loginTitle".tr(),
           style: TextStyle(
             fontSize: 40,
             fontWeight: FontWeight.bold,
@@ -46,7 +47,7 @@ class LoginScreen extends StatelessWidget {
           ),
         ),
         Text(
-          "Enter your credential to login",
+          "loginSubTitle".tr(),
           style: TextStyle(
             fontSize: 15,
             color: provMode.currentMode == ThemeMode.light
@@ -72,7 +73,7 @@ class LoginScreen extends StatelessWidget {
                   ? darkBalckColor
                   : Colors.white,
             ),
-            hintText: "emailAdress",
+            hintText: "loginEmailTextField".tr(),
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(18),
                 borderSide: BorderSide.none),
@@ -97,7 +98,7 @@ class LoginScreen extends StatelessWidget {
                   ? darkBalckColor
                   : Colors.white,
             ),
-            hintText: "Password",
+            hintText: "loginPasswordTextField".tr(),
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(18),
                 borderSide: BorderSide.none),
@@ -127,7 +128,7 @@ class LoginScreen extends StatelessWidget {
                   backgroundColor: provMode.currentMode == ThemeMode.light
                       ? lightBackgroundColor.withOpacity(0.9)
                       : primaryColor.withOpacity(0.9),
-                  title: Text('error'),
+                  title: Text("LoginDialogError".tr()),
                   content: Text(e.toString()),
                   actions: [
                     ElevatedButton(
@@ -135,7 +136,7 @@ class LoginScreen extends StatelessWidget {
                         Navigator.pop(context);
                       },
                       child: Text(
-                        'okay',
+                        "LoginDialogButton".tr(),
                         style: TextStyle(
                           color: Colors.white,
                         ),
@@ -157,8 +158,8 @@ class LoginScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 16),
             backgroundColor: primaryColor,
           ),
-          child: const Text(
-            "Login",
+          child: Text(
+            "loginButton".tr(),
             style: TextStyle(fontSize: 20, color: Colors.white),
           ),
         )
@@ -169,8 +170,8 @@ class LoginScreen extends StatelessWidget {
   _forgotPassword(context) {
     return TextButton(
       onPressed: () {},
-      child: const Text(
-        "Forgot password?",
+      child: Text(
+        "forgotPassword".tr(),
         style: TextStyle(color: primaryColor),
       ),
     );
@@ -182,7 +183,7 @@ class LoginScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "Dont have an account? ",
+          "dontHaveAccount".tr(),
           style: TextStyle(
             color: provMode.currentMode == ThemeMode.light
                 ? darkBalckColor
@@ -193,8 +194,8 @@ class LoginScreen extends StatelessWidget {
             onPressed: () {
               Navigator.pushNamed(context, SignUpScreen.routeName);
             },
-            child: const Text(
-              "Sign Up",
+            child: Text(
+              "signUp".tr(),
               style: TextStyle(color: primaryColor),
             ))
       ],

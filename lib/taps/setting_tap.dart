@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/constants/color_constant.dart';
@@ -5,8 +6,10 @@ import 'package:to_do_app/providers/theme_mode_provider.dart';
 
 class SettingTap extends StatelessWidget {
   SettingTap({super.key});
-  var sellectedMode = 'Light';
-  var sellectedlang = 'English';
+
+  var sellectedMode = "light".tr();
+
+  var sellectedlang = "english".tr();
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +20,9 @@ class SettingTap extends StatelessWidget {
           : darkBackgrounColor,
       appBar: AppBar(
         title: Padding(
-          padding: EdgeInsets.only(left: 40, top: 40),
+          padding: EdgeInsets.only(left: 40, top: 40, right: 40),
           child: Text(
-            'Settings',
+            "settingTitle".tr(),
             style: TextStyle(
               fontFamily: 'Poppins-Medium',
               fontWeight: FontWeight.w700,
@@ -44,14 +47,17 @@ class SettingTap extends StatelessWidget {
             height: 30,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 38),
+            padding: const EdgeInsets.only(left: 38, right: 38),
             child: Text(
-              'Language',
+              "language".tr(),
               style: TextStyle(
-                  fontFamily: 'Poppins-Medium',
-                  fontWeight: FontWeight.w700,
-                  fontSize: 14,
-                  color: Colors.black),
+                fontFamily: 'Poppins-Medium',
+                fontWeight: FontWeight.w700,
+                fontSize: 14,
+                color: provMode.currentMode == ThemeMode.light
+                    ? darkBalckColor
+                    : primaryColor,
+              ),
             ),
           ),
           SizedBox(
@@ -63,17 +69,22 @@ class SettingTap extends StatelessWidget {
               child: DropdownButton(
                 items: [
                   DropdownMenuItem(
-                    value: 'English',
-                    child: Text('English'),
+                    value: "english".tr(),
+                    child: Text("english".tr()),
                   ),
                   DropdownMenuItem(
-                    value: 'Arabic',
-                    child: Text('Arabic'),
+                    value: "arabic".tr(),
+                    child: Text("arabic".tr()),
                   )
                 ],
                 value: sellectedlang,
                 onChanged: (va) {
                   sellectedlang = va!;
+                  if (sellectedlang == "english".tr()) {
+                    context.setLocale(Locale('en'));
+                  } else {
+                    context.setLocale(Locale('ar'));
+                  }
                 },
                 dropdownColor: provMode.currentMode == ThemeMode.light
                     ? Colors.white
@@ -106,14 +117,16 @@ class SettingTap extends StatelessWidget {
             height: 30,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 38),
+            padding: const EdgeInsets.only(left: 38, right: 38),
             child: Text(
-              'Mode',
+              "mode".tr(),
               style: TextStyle(
                   fontFamily: 'Poppins-Medium',
                   fontWeight: FontWeight.w700,
                   fontSize: 14,
-                  color: Colors.black),
+                  color: provMode.currentMode == ThemeMode.light
+                      ? darkBalckColor
+                      : primaryColor),
             ),
           ),
           SizedBox(
@@ -125,18 +138,18 @@ class SettingTap extends StatelessWidget {
               child: DropdownButton(
                 items: [
                   DropdownMenuItem(
-                    value: 'Light',
-                    child: Text('Light'),
+                    value: "light".tr(),
+                    child: Text("light".tr()),
                   ),
                   DropdownMenuItem(
-                    value: 'Dark',
-                    child: Text('Dark'),
+                    value: "dark".tr(),
+                    child: Text("dark".tr()),
                   )
                 ],
                 value: sellectedMode,
                 onChanged: (va) {
                   sellectedMode = va!;
-                  if (sellectedMode == 'Light') {
+                  if (sellectedMode == "light".tr()) {
                     provMode.changeTheme(ThemeMode.light);
                   } else {
                     provMode.changeTheme(ThemeMode.dark);

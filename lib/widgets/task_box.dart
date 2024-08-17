@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
@@ -36,7 +37,7 @@ class _TaskBoxState extends State<TaskBox> {
               padding: EdgeInsets.zero,
               icon: Icons.delete,
               spacing: 5,
-              label: 'Delete',
+              label: "delete".tr(),
               backgroundColor: Colors.red,
               borderRadius: BorderRadius.horizontal(left: Radius.circular(15)),
             ),
@@ -51,7 +52,7 @@ class _TaskBoxState extends State<TaskBox> {
             },
             padding: EdgeInsets.zero,
             icon: Icons.edit,
-            label: 'Edit',
+            label: "Edit".tr(),
             backgroundColor: Colors.blue,
             borderRadius: BorderRadius.horizontal(right: Radius.circular(15)),
           ),

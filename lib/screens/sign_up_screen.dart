@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/constants/color_constant.dart';
@@ -40,7 +41,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   children: <Widget>[
                     const SizedBox(height: 60.0),
                     Text(
-                      "Sign up",
+                      "signUpTitle".tr(),
                       style: TextStyle(
                         color: provMode.currentMode == ThemeMode.light
                             ? darkBalckColor
@@ -53,7 +54,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 20,
                     ),
                     Text(
-                      "Create your account",
+                      "signUpSupTitle".tr(),
                       style: TextStyle(
                         fontSize: 15,
                         color: provMode.currentMode == ThemeMode.light
@@ -73,7 +74,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ? darkBalckColor
                                 : Colors.white,
                           ),
-                          hintText: "Username",
+                          hintText: "signUpUserNameTextField".tr(),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(18),
                               borderSide: BorderSide.none),
@@ -97,7 +98,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ? darkBalckColor
                                 : Colors.white,
                           ),
-                          hintText: "Email",
+                          hintText: "signUpEmailTextField".tr(),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(18),
                               borderSide: BorderSide.none),
@@ -121,7 +122,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ? darkBalckColor
                               : Colors.white,
                         ),
-                        hintText: "phone",
+                        hintText: "signUpPhoneTextField".tr(),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(18),
                             borderSide: BorderSide.none),
@@ -146,7 +147,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ? darkBalckColor
                               : Colors.white,
                         ),
-                        hintText: "Password",
+                        hintText: "signUpPasswordTextField".tr(),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(18),
                             borderSide: BorderSide.none),
@@ -175,7 +176,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             userName: userNameController.text,
                             phone: phoneController.text,
                             onSucsses: () {
-                              showSnack('signUp is success');
+                              showSnack("snackBar".tr());
                               Navigator.pushNamedAndRemoveUntil(
                                 context,
                                 LoginScreen.routeName,
@@ -190,7 +191,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           ThemeMode.light
                                       ? lightBackgroundColor.withOpacity(0.9)
                                       : primaryColor.withOpacity(0.9),
-                                  title: Text('error'),
+                                  title: Text("signUpDialogError".tr()),
                                   content: Text(e.toString()),
                                   actions: [
                                     ElevatedButton(
@@ -198,7 +199,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         Navigator.pop(context);
                                       },
                                       child: Text(
-                                        'okay',
+                                        "signUpDialogButton".tr(),
                                         style: TextStyle(
                                           color: Colors.white,
                                         ),
@@ -217,8 +218,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               );
                             });
                       },
-                      child: const Text(
-                        "Sign up",
+                      child: Text(
+                        "singUpButton".tr(),
                         style: TextStyle(fontSize: 20, color: Colors.white),
                       ),
                       style: ElevatedButton.styleFrom(
@@ -248,9 +249,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ],
                   ),
                   child: TextButton(
-                    onPressed: () {
-                      showSnack('title');
-                    },
+                    onPressed: () {},
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -267,7 +266,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         const SizedBox(width: 18),
                         Text(
-                          "Sign In with Google",
+                          "googleButton".tr(),
                           style: TextStyle(
                             fontSize: 16,
                             color: provMode.currentMode == ThemeMode.light
@@ -283,7 +282,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      "Already have an account?",
+                      "alredyHaveAccount".tr(),
                       style: TextStyle(
                         color: provMode.currentMode == ThemeMode.light
                             ? darkBalckColor
@@ -294,8 +293,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: const Text(
-                          "Login",
+                        child: Text(
+                          "login".tr(),
                           style: TextStyle(color: primaryColor, fontSize: 20),
                         ))
                   ],
