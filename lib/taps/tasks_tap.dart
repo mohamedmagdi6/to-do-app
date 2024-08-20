@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/constants/color_constant.dart';
 import 'package:to_do_app/firebase_functions.dart';
+import 'package:to_do_app/providers/cache_current_user_provider.dart';
 import 'package:to_do_app/providers/theme_mode_provider.dart';
 import 'package:to_do_app/widgets/task_box.dart';
 
@@ -19,7 +20,9 @@ class _TasksTapState extends State<TasksTap> {
 
   @override
   Widget build(BuildContext context) {
+    Locale currentLocale = Localizations.localeOf(context);
     var provMode = Provider.of<ThemeModeProvider>(context);
+    var provCache = Provider.of<CacheCurrentUserProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Padding(
@@ -28,7 +31,35 @@ class _TasksTapState extends State<TasksTap> {
             "title".tr(),
           ),
         ),
-        actions: [],
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(top: 40),
+            child: Text(
+              provCache.userModel!.userName,
+              style: TextStyle(
+                fontFamily: 'Poppins-Medium',
+                fontWeight: FontWeight.w700,
+                fontSize: 22,
+                color: provMode.currentMode == ThemeMode.light
+                    ? primaryColor
+                    : darkBalckColor,
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+                right: currentLocale.languageCode == 'en' ? 40 : 10,
+                top: 30,
+                left: currentLocale.languageCode == 'en' ? 10 : 40),
+            child: ImageIcon(
+              AssetImage('assets/images/user.png'),
+              size: 30,
+              color: provMode.currentMode == ThemeMode.light
+                  ? primaryColor
+                  : darkBalckColor,
+            ),
+          ),
+        ],
         toolbarHeight: 100,
       ),
       body: Column(

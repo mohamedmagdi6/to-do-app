@@ -1,8 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/constants/color_constant.dart';
 import 'package:to_do_app/providers/theme_mode_provider.dart';
+import 'package:to_do_app/screens/login_screen.dart';
 
 class SettingTap extends StatelessWidget {
   SettingTap({super.key});
@@ -15,6 +18,7 @@ class SettingTap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var provMode = Provider.of<ThemeModeProvider>(context);
+    Locale currentLocale = Localizations.localeOf(context);
     return Scaffold(
       backgroundColor: provMode.currentMode == ThemeMode.light
           ? lightBackgroundColor
@@ -34,6 +38,28 @@ class SettingTap extends StatelessWidget {
             ),
           ),
         ),
+        actions: [
+          InkWell(
+            onTap: () async {
+              await FirebaseAuth.instance.signOut();
+              Navigator.pushNamedAndRemoveUntil(
+                  context, LoginScreen.routeName, (route) => false);
+            },
+            child: Padding(
+              padding: EdgeInsets.only(
+                  right: currentLocale.languageCode == 'en' ? 40 : 10,
+                  top: 30,
+                  left: currentLocale.languageCode == 'en' ? 10 : 40),
+              child: ImageIcon(
+                AssetImage('assets/images/log-out.png'),
+                size: 30,
+                color: provMode.currentMode == ThemeMode.light
+                    ? primaryColor
+                    : darkBalckColor,
+              ),
+            ),
+          ),
+        ],
         backgroundColor: primaryColor,
         toolbarHeight: 100,
       ),
