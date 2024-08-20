@@ -28,6 +28,7 @@ class _TasksTapState extends State<TasksTap> {
             "title".tr(),
           ),
         ),
+        actions: [],
         toolbarHeight: 100,
       ),
       body: Column(

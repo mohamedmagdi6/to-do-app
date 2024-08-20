@@ -53,6 +53,13 @@ class FirebaseFunctions {
         .snapshots();
   }
 
+  static Future<UserModel?> getUser(String id) async {
+    DocumentSnapshot<UserModel> docRef =
+        await getUserCollection().doc(id).get();
+
+    return docRef.data();
+  }
+
   static Future<void> delete(String task) {
     var collection = getCollection();
 
