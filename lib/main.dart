@@ -10,6 +10,7 @@ import 'package:to_do_app/screens/home_screen.dart';
 import 'package:to_do_app/screens/login_screen.dart';
 import 'package:to_do_app/screens/sign_up_screen.dart';
 import 'package:to_do_app/screens/splash_screen.dart';
+import 'package:to_do_app/taps/tasks_tap.dart';
 import 'package:to_do_app/theme_data.dart';
 
 Future<void> main() async {

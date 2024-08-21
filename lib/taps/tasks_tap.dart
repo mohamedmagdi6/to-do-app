@@ -17,7 +17,6 @@ class TasksTap extends StatefulWidget {
 
 class _TasksTapState extends State<TasksTap> {
   DateTime dateTime = DateTime.now();
-
   @override
   Widget build(BuildContext context) {
     Locale currentLocale = Localizations.localeOf(context);
@@ -35,13 +34,13 @@ class _TasksTapState extends State<TasksTap> {
           Padding(
             padding: const EdgeInsets.only(top: 40),
             child: Text(
-              provCache.userModel!.userName,
+              provCache.userModel?.userName ?? '.',
               style: TextStyle(
                 fontFamily: 'Poppins-Medium',
                 fontWeight: FontWeight.w700,
                 fontSize: 22,
                 color: provMode.currentMode == ThemeMode.light
-                    ? primaryColor
+                    ? Colors.white
                     : darkBalckColor,
               ),
             ),
@@ -55,7 +54,7 @@ class _TasksTapState extends State<TasksTap> {
               AssetImage('assets/images/user.png'),
               size: 30,
               color: provMode.currentMode == ThemeMode.light
-                  ? primaryColor
+                  ? Colors.white
                   : darkBalckColor,
             ),
           ),

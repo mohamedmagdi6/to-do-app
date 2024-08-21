@@ -53,9 +53,10 @@ class FirebaseFunctions {
         .snapshots();
   }
 
-  static Future<UserModel?> getUser(String id) async {
-    DocumentSnapshot<UserModel> docRef =
-        await getUserCollection().doc(id).get();
+  static Future<UserModel?> getUser() async {
+    DocumentSnapshot<UserModel> docRef = await getUserCollection()
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
 
     return docRef.data();
   }

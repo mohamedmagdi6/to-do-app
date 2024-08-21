@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/constants/color_constant.dart';
 import 'package:to_do_app/firebase_functions.dart';
+import 'package:to_do_app/providers/cache_current_user_provider.dart';
 import 'package:to_do_app/providers/theme_mode_provider.dart';
 import 'package:to_do_app/screens/home_screen.dart';
 import 'package:to_do_app/screens/sign_up_screen.dart';
+import 'package:to_do_app/taps/tasks_tap.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -61,12 +63,17 @@ class LoginScreen extends StatelessWidget {
 
   _inputField(context) {
     var provMode = Provider.of<ThemeModeProvider>(context);
+    var provcache = Provider.of<CacheCurrentUserProvider>(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TextFormField(
           controller: emailController,
+          style: TextStyle(
+              color: provMode.currentMode == ThemeMode.light
+                  ? darkBalckColor
+                  : Colors.white),
           decoration: InputDecoration(
             hintStyle: TextStyle(
               color: provMode.currentMode == ThemeMode.light
@@ -91,6 +98,10 @@ class LoginScreen extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         TextFormField(
+          style: TextStyle(
+              color: provMode.currentMode == ThemeMode.light
+                  ? darkBalckColor
+                  : Colors.white),
           controller: passwordController,
           decoration: InputDecoration(
             hintStyle: TextStyle(
@@ -120,7 +131,10 @@ class LoginScreen extends StatelessWidget {
           onPressed: () {
             FirebaseFunctions.login(
                 emailController.text, passwordController.text, onSucsses: () {
-              Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+              provcache.getuser();
+              Future.delayed(Duration(seconds: 1), () {
+                Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+              });
             }, onError: (e) {
               showDialog(
                 context: context,

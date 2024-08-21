@@ -67,6 +67,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Column(
                   children: <Widget>[
                     TextFormField(
+                      style: TextStyle(
+                          color: provMode.currentMode == ThemeMode.light
+                              ? darkBalckColor
+                              : Colors.white),
                       controller: userNameController,
                       decoration: InputDecoration(
                           hintStyle: TextStyle(
@@ -91,6 +95,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
+                      style: TextStyle(
+                          color: provMode.currentMode == ThemeMode.light
+                              ? darkBalckColor
+                              : Colors.white),
                       controller: emailController,
                       decoration: InputDecoration(
                           hintStyle: TextStyle(
@@ -115,6 +123,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
+                      style: TextStyle(
+                          color: provMode.currentMode == ThemeMode.light
+                              ? darkBalckColor
+                              : Colors.white),
                       controller: phoneController,
                       decoration: InputDecoration(
                         hintStyle: TextStyle(
@@ -140,6 +152,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
+                      style: TextStyle(
+                          color: provMode.currentMode == ThemeMode.light
+                              ? darkBalckColor
+                              : Colors.white),
                       controller: passwordController,
                       decoration: InputDecoration(
                         hintStyle: TextStyle(

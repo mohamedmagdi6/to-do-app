@@ -15,7 +15,7 @@ class CacheCurrentUserProvider extends ChangeNotifier {
   }
 
   getUserModel() async {
-    userModel = await FirebaseFunctions.getUser(currentUser!.uid);
+    userModel = await FirebaseFunctions.getUser();
     notifyListeners();
   }
 }

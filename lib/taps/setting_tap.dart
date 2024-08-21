@@ -54,7 +54,7 @@ class SettingTap extends StatelessWidget {
                 AssetImage('assets/images/log-out.png'),
                 size: 30,
                 color: provMode.currentMode == ThemeMode.light
-                    ? primaryColor
+                    ? Colors.white
                     : darkBalckColor,
               ),
             ),
